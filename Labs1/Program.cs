@@ -1,9 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("ProgramTests")]
 
 class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         // Request the size of the data files from the user
         Console.Write("Enter the size of the data files in KB: ");
@@ -60,7 +63,7 @@ class Program
         }
     }
 
-    static void GenerateRandomDataFile(string fileName, int dataSize)
+    internal static void GenerateRandomDataFile(string fileName, int dataSize)
     {
         Random random = new Random();
         using (StreamWriter writer = new StreamWriter(fileName, false)) // Open file with overwrite mode
@@ -73,7 +76,7 @@ class Program
         }
     }
 
-    static double[] ReadArrayFromFile(string fileName)
+    internal static double[] ReadArrayFromFile(string fileName)
     {
         string[] lines = File.ReadAllLines(fileName);
         double[] array = new double[lines.Length];
@@ -84,7 +87,7 @@ class Program
         return array;
     }
 
-    static void WriteArrayToFile(string fileName, double[] array)
+    internal static void WriteArrayToFile(string fileName, double[] array)
     {
         using (StreamWriter writer = new StreamWriter(fileName))
         {
@@ -95,7 +98,7 @@ class Program
         }
     }
 
-    static double[] CalculateResultArray(double[] A, double[] B, double[] C)
+    internal static double[] CalculateResultArray(double[] A, double[] B, double[] C)
     {
         int length = A.Length;
         double[] R = new double[length];
@@ -111,7 +114,7 @@ class Program
         return R;
     }
 
-    static double CalculateAverage(double[] array)
+    internal static double CalculateAverage(double[] array)
     {
         double sum = 0;
         foreach (double value in array)
